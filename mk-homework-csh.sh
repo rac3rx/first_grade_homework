@@ -15,14 +15,14 @@ if test -f $tgt_file; then rm -f $tgt_file; fi
 # email header
 #
 echo "
-Hi, Christine, it is time for some math homework
-"  >> $tgt_file
+Hi, Christine, it is time to review, \"Site Words and Math Homework - $(date +"%A, %d%b%y")\"" > $tgt_file
+echo " " >> $tgt_file
 
 
 #
 # pull 10 random words
 #
-echo "# Sight Words (Vocabulary" >> $tgt_file
+echo "# Sight Words (Vocabulary)" >> $tgt_file
 shuf -n10 1000_most_frequent_words.txt | cat -n >> $tgt_file
 #
 # generate addition and substraction problems
@@ -41,3 +41,8 @@ echo "
 Good luck!  :)
 Dad xoxo
 "  >> $tgt_file
+
+#
+# copy to clipboard
+#
+cat $tgt_file | pbcopy
