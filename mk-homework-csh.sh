@@ -3,6 +3,9 @@
 #
 #
 
+shopt -s expand_aliases
+#source ~/.bash_aliases
+source ~/.bash_profile
 
 #
 # create input file and delete the old one
