@@ -30,13 +30,13 @@ shuf -n10 1000_most_frequent_words.txt | cat -n >> $tgt_file
 echo " " >> $tgt_file
 echo "# Addition and Subtraction" >> $tgt_file
 for i in `seq 1 3`; do echo "    $i.  "$((RANDOM%999))"+"$(($RANDOM%999))"=" >> $tgt_file; done
-for i in `seq 1 3`; do echo "    $(($i+3)).  "$((RANDOM%999))"-"$(($RANDOM%99))"=" >> $tgt_file; done
+for i in `seq 4 6`; do echo "    $i   "$((RANDOM%999))"-"$(($RANDOM%99))"=" >> $tgt_file; done
 
 #
 # multiplication
 #
 for i in {6..8}; do echo " $i.  1 x $(($RANDOM%9)) = " >> $tgt_file; done
-for i in {8..10}; do echo " $i.  2 x $(($RANDOM%9)) = " >> $tgt_file; done
+for i in {9..10}; do echo " $i.  2 x $(($RANDOM%9)) = " >> $tgt_file; done
 
 #
 # email footer
