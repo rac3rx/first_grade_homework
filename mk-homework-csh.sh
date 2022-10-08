@@ -50,4 +50,7 @@ Dad xoxo
 #
 # copy to clipboard
 #
+shopt -s expand_aliases
+#alias pbcopy='xclip -selection clipboard'
+alias pbcopy='xsel --clipboard --input'
 cat $tgt_file | pbcopy
