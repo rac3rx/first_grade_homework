@@ -35,7 +35,7 @@ for i in `seq 4 6`; do echo "    $i   "$((RANDOM%999))"-"$(($RANDOM%99))"=" >> $
 #
 # multiplication
 #
-for i in {6..8}; do echo " $i.  1 x $(($RANDOM%9)) = " >> $tgt_file; done
+for i in {7..8}; do echo " $i.  1 x $(($RANDOM%9)) = " >> $tgt_file; done
 for i in {9..10}; do echo " $i.  2 x $(($RANDOM%9)) = " >> $tgt_file; done
 
 #
