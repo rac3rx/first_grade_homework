@@ -66,7 +66,15 @@ Dad xoxo
 #
 # copy to clipboard
 #
-shopt -s expand_aliases
+if ! command -v pbcopy &> /dev/null
+then
+    echo "setting pbcopy as an alias; needs xsel"
+    shopt -s expand_aliases
+    alias pbcopy='xsel --clipboard --input'
+    exit
+fi
+
+#shopt -s expand_aliases
 #alias pbcopy='xclip -selection clipboard'
-alias pbcopy='xsel --clipboard --input'
+#alias pbcopy='xsel --clipboard --input'
 cat $tgt_file | pbcopy
