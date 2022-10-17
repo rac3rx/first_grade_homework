@@ -43,7 +43,7 @@ for i in {9..10}; do echo " $i.  2 x $(($RANDOM%9)) = " >> $tgt_file; done
 #
 divisor=$(($RANDOM%9))
 dividend=$(($RANDOM%9))
-if [[ $divisor -ge $dividend ]]; then while [[ $divisor -ge $dividend ]]; do ((divisor--)); done; fi; echo "$divisor/$dividend"
+if [[ $divisor -ge $dividend ]]; then while [[ $divisor -ge $dividend ]]; do ((divisor--)); done; fi;
 
 for i in {11..12}; do echo " $i.  $dividend / $divisor = " >> $tgt_file; done
 
@@ -51,7 +51,8 @@ for i in {11..12}; do echo " $i.  $dividend / $divisor = " >> $tgt_file; done
 # Word Problem
 #
 echo "40.  Word Problem" >> $tgt_file
-lynx -dump https://logiclike.com/en/4th-grade-math-word-problems | sed -e '/[:blank:]*Show\ Answer/,+2d' | sed '/Join\ other\ LogicLikers\ online!/,$d' | sed -e '/\[tr/,/\skills\ with\ LogicLike/d' | sed 's/^[[:alpha:]].*$//g' | sed -e '/\[.*png/,/Riddles\ \&\ Questions/d' | sed 's/You\ may\ also.*//g' | cat -s | sed 's/Logiclike.*//g'|cat -s | awk '{gsub(/\n/, "~")} 1' RS= |shuf|awk '{gsub(/~/, "\n")} 1' ORS="\n\n"| awk -v RS='\n\n' -vORS='\n\n' '{if(NR==1)print $0}' >> $tgt_file
+#lynx -dump https://logiclike.com/en/4th-grade-math-word-problems | sed -e '/[[:blank:]]*Show\ Answer/,+2d' | sed '/Join\ other\ LogicLikers\ online!/,$d' | sed -e '/\[tr/,/\skills\ with\ LogicLike/d' | sed 's/^[[:alpha:]].*$//g' | sed -e '/\[.*png/,/Riddles\ \&\ Questions/d' | sed 's/You\ may\ also.*//g' | cat -s | sed 's/Logiclike.*//g'|cat -s | awk '{gsub(/\n/, "~")} 1' RS= |shuf|awk '{gsub(/~/, "\n")} 1' ORS="\n\n"| awk -v RS='\n\n' -vORS='\n\n' '{if(NR==1)print $0}' >> $tgt_file
+lynx -dump https://logiclike.com/en/4th-grade-math-word-problems | sed -e '/[[:blank:]]*Show\ Answer/,+2d' | sed '/Join\ other\ LogicLikers\ online!/,$d' | sed 's/^[[:alpha:]].*$//g' | sed -e '/\[.*png/,/Riddles\ \&\ Questions/d' | sed 's/You\ may\ also.*//g' | awk 'NR>20' | sed 's/Logiclike.*//g'|cat -s | awk '{gsub(/\n/, "~")} 1' RS= |shuf|awk '{gsub(/~/, "\n")} 1' ORS="\n\n"| awk -v RS='\n\n' -vORS='\n\n' '{if(NR==1)print $0}' >> $tgt_file
 
 
 #
@@ -70,11 +71,12 @@ if ! command -v pbcopy &> /dev/null
 then
     echo "setting pbcopy as an alias; needs xsel"
     shopt -s expand_aliases
+    xsel=`which xsel`
     alias pbcopy='xsel --clipboard --input'
-    exit
 fi
 
 #shopt -s expand_aliases
 #alias pbcopy='xclip -selection clipboard'
 #alias pbcopy='xsel --clipboard --input'
+echo "copying homework/contents to clipboard"
 cat $tgt_file | pbcopy
