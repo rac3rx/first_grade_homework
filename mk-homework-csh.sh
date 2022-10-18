@@ -50,7 +50,7 @@ for i in {11..12}; do echo " $i.  $dividend / $divisor = " >> $tgt_file; done
 #
 # Word Problem
 #
-echo "40.  Word Problem" >> $tgt_file
+echo "13.  Word Problem" >> $tgt_file
 #lynx -dump https://logiclike.com/en/4th-grade-math-word-problems | sed -e '/[[:blank:]]*Show\ Answer/,+2d' | sed '/Join\ other\ LogicLikers\ online!/,$d' | sed -e '/\[tr/,/\skills\ with\ LogicLike/d' | sed 's/^[[:alpha:]].*$//g' | sed -e '/\[.*png/,/Riddles\ \&\ Questions/d' | sed 's/You\ may\ also.*//g' | cat -s | sed 's/Logiclike.*//g'|cat -s | awk '{gsub(/\n/, "~")} 1' RS= |shuf|awk '{gsub(/~/, "\n")} 1' ORS="\n\n"| awk -v RS='\n\n' -vORS='\n\n' '{if(NR==1)print $0}' >> $tgt_file
 lynx -dump https://logiclike.com/en/4th-grade-math-word-problems | sed -e '/[[:blank:]]*Show\ Answer/,+2d' | sed '/Join\ other\ LogicLikers\ online!/,$d' | sed 's/^[[:alpha:]].*$//g' | sed -e '/\[.*png/,/Riddles\ \&\ Questions/d' | sed 's/You\ may\ also.*//g' | awk 'NR>20' | sed 's/Logiclike.*//g'|cat -s | awk '{gsub(/\n/, "~")} 1' RS= |shuf|awk '{gsub(/~/, "\n")} 1' ORS="\n\n"| awk -v RS='\n\n' -vORS='\n\n' '{if(NR==1)print $0}' >> $tgt_file
 
